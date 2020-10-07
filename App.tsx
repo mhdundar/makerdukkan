@@ -28,6 +28,8 @@ import {
 
 declare const global: {HermesInternal: null | {}};
 
+// Naber la
+
 const App = () => {
   return (
     <>
