@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -19,75 +19,48 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-declare const global: {HermesInternal: null | {}};
+class App extends Component {
+  state = {
+    count: 0
+  }
 
-// Naber la
+  onPress = () => {
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
 
-const App = () => {
-  return (
-    <View
-      style={{
-        backgroundColor: '#F00',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <TouchableOpacity
-        style={{backgroundColor: '#0F0'}}
-        onPress={() =>
-          Alert.alert('cağnım', 'deneme', [
-            {text: 'Sil'},
-            {
-              text: 'Onayla',
-              onPress: () => {
-                Alert.alert('Naber la');
-              },
-            },
-          ])
-        }>
-        <Text>sss</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+ render() {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity
+         style={styles.button}
+         onPress={this.onPress}
+        >
+         <Text>Click me</Text>
+        </TouchableOpacity>
+        <View>
+          <Text>
+            You clicked { this.state.count } times
+          </Text>
+        </View>
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    marginBottom: 10
+  }
+})
 
 export default App;
