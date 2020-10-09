@@ -7,12 +7,22 @@ const client = new MongoClient(uri);
 
 try {
   client.connect().then(() => {
-    client.db("sample_airbnb").collection("listingsAndReviews").insertOne({
-      name: "Lovely Loft",
-      summary: "A charming loft in Paris",
-      bedrooms: 1,
-      bathrooms: 1,
-    });
+    const many = [];
+
+    for (let i = 0; i < 1000; i++) {
+      many.push({
+        Malzeme_Adi: "Transistör-" + i,
+        Malzeme_Tipi: "BD138-" + i,
+        Malzeme_Adedi: i,
+        Alici: Math.random().toString(36).substr(2, 9),
+      });
+    }
+
+    client
+      .db("makerDb")
+      .collection("deneme")
+      .insertMany(many)
+      .then((res) => console.log({ res }));
   });
 } finally {
   client.close();
