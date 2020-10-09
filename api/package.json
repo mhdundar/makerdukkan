@@ -1,0 +1,11 @@
+{
+  "name": "mongo.api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ömer Güven <omr.gven@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2"
+  }
+}
