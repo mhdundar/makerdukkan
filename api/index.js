@@ -1,9 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const url = require("url");
-const querystring = require("querystring");
 const { MongoClient, ObjectId } = require("mongodb");
-
+const port = 9876;
 const uri =
   "mongodb+srv://dukkan:1@cluster0.zrwkq.mongodb.net/makerDb?retryWrites=true&w=majority";
 
@@ -13,12 +11,7 @@ app.use(bodyParser.json());
 
 const client = new MongoClient(uri);
 
-app.get("/", async function (req, res) {
-  let page = req.query.page;
-  let limit = req.query.limit;
-});
-
-app.get("/getir/:id", (req, res) => {
+app.get("/:id", async function (req, res) {
   client.connect().then(() => {
     client
       .db("makerDb")
@@ -29,6 +22,6 @@ app.get("/getir/:id", (req, res) => {
   });
 });
 
-let server = app.listen(3512, function () {
-  console.log("Server is listening on port 8080");
+app.listen(port, function () {
+  console.log(`Server is listening on port ${port}`);
 });
